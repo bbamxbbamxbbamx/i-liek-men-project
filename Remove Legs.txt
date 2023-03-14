@@ -1,0 +1,94 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Funny layerclothing", "DarkTheme")
+local Tab = Window:NewTab("Layer clothing")
+local Section = Tab:NewSection("Will add more soon")
+Section:NewButton("For pant", "lo", function()
+    loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Remove%20Legs.txt"))()
+end)
+Section:NewButton("For t-Shirt and shirt and sweaters", "lo", function()
+    loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Remove%20Arms.txt"))()
+end)
+Section:NewButton("Reset v1", "lo", function()
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end)
+Section:NewButton("No torso" (must wear jacket)", "lo", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/ant-7802/--/main/get.real'))()
+end)
+Section:NewButton("Layerclothing REPLICATES(wear anything if you wanted)" (must wear jacket)", "lo", function()
+
+
+    for i,v in next, game:GetService('Players').LocalPlayer.Character:GetDescendants() do
+    if v:IsA('WrapTarget') then
+        v:Destroy()
+        wait(0.5)
+    end
+end
+
+
+end)
+
+Section:NewButton("Invisible limb (wear any free jacket)" (must wear jacket)", "lo", function()
+
+
+    local LP = game:GetService('Players').LocalPlayer
+
+local CachedClothing = {
+    'Jacket-TrenchCoat-White',
+    'Jacket-Leather-Brown',
+    'Jacket-Suit-Gray',
+    'Jacket-Denim-Blue-8516609675',
+    'Jacket-Hoodie-Orange_6984765766'
+}
+
+local function GetAccessory()
+    local LC = LP and LP.Character.Parent and LP.Character or nil
+   
+    if LC then
+        for _, v in next, LC:GetChildren() do
+            if v:IsA('Accessory') and table.find(CachedClothing, v.Name) then
+                return v
+            end
+        end
+    end
+end
+
+local function ManipulateLayeredAccessories(Instruction)
+    local LC, Instruction = LP and LP.Character.Parent and LP.Character or nil, type(Instruction) == 'number' and Instruction or nil
+
+    if LC and Instruction then
+        if Instruction == 1 then
+            local Accessory = GetAccessory()
+           
+            if Accessory and Accessory.Name == 'Jacket-TrenchCoat-White' then
+                local SurfaceAppearance = Accessory:FindFirstChild('SurfaceAppearance', true)
+               
+                if SurfaceAppearance then
+                    SurfaceAppearance:Destroy()
+                end
+            elseif Accessory and Accessory.Name ~= 'Jacket-TrenchCoat-White' then
+                error('invalid attempt to \'ManipulateLayeredAccessories\' (found layered accessory, but it is not the white trenchcoat)')
+            end
+        elseif Instruction == 2 then
+            local Accessory = GetAccessory()
+            local Handle = Accessory and Accessory:FindFirstChild('Handle') or nil
+            local AccessoryWeld = Handle and Handle:FindFirstChild('AccessoryWeld') or nil
+
+            if Accessory and AccessoryWeld then
+                AccessoryWeld:Destroy()
+
+                wait(.5)
+               
+                for i = 1, 50 do
+                    if Handle and Handle.Parent then
+                        Handle.Velocity = Vector3.new(0, 1e9, 0); task.wait()
+                    else
+                        break
+                    end
+                end
+            end
+        end
+    end
+end
+
+
+end)
